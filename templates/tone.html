@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="image-container">
+  <div class="image-wrapper">
+    <img src="{% static 'เอก.png' %}" alt="เอก" data-video="{% static '่.mp4' %}">
+  </div>
+  <div class="image-wrapper">
+    <img src="{% static 'โท.png' %}" alt="โท" data-video="{% static '้.mp4' %}">
+  </div>
+  <div class="image-wrapper">
+    <img src="{% static 'ตรี.png' %}" alt="ตรี" data-video="{% static '๊.mp4' %}">
+  </div>
+  <div class="image-wrapper">
+    <img src="{% static 'จัตวา.png' %}" alt="จัตวา" data-video="{% static '๋.mp4' %}">
+  </div>
+</div>
+
+<div class="popup-container">
+  <div class="popup-wrapper">
+    <h2 class="popup-title"></h2>
+    <video controls></video>
+    <button class="popup-close-btn">X</button>
+  </div>
+</div>
+
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const popupContainer = document.querySelector('.popup-container');
+  popupContainer.style.display = 'none';
+});
+
+const images = document.querySelectorAll('.image-wrapper');
+const popupContainer = document.querySelector('.popup-container');
+const popupTitle = document.querySelector('.popup-title');
+const popupVideo = document.querySelector('.popup-wrapper video');
+const popupCloseBtn = document.querySelector('.popup-close-btn');
+
+images.forEach((image) => {
+  image.addEventListener('click', () => {
+    const videoSrc = image.querySelector('img').dataset.video;
+    const videoName = image.querySelector('img').alt;
+    popupTitle.textContent = videoName;
+    popupVideo.src = videoSrc;
+    popupContainer.style.display = 'flex';
+  });
+});
+
+popupCloseBtn.addEventListener('click', () => {
+  popupVideo.pause();
+  popupContainer.style.display = 'none';
+});
+
+popupContainer.addEventListener('click', (event) => {
+  if (event.target === popupContainer) {
+    popupVideo.pause();
+    popupContainer.style.display = 'none';
+  }
+});
+
+</script>
+{% endblock %}

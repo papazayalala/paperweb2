@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="image-container">
+  <div class="image-wrapper">
+    <img src="{% static 'A1.png' %}" alt="A" data-video="{% static 'A.mp4' %}">
+  </div>
+  <div class="image-wrapper">
+    <img src="{% static 'B1.png' %}" alt="B" data-video="{% static 'B.mp4' %}">
+  </div>
+  <div class="image-wrapper">
+    <img src="{% static 'C1.png' %}" alt="C" data-video="{% static 'C.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+    <img src="{% static 'D1.png' %}" alt="D" data-video="{% static 'D.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+    <img src="{% static 'E1.png' %}" alt="E" data-video="{% static 'E.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'F1.png' %}" alt="F" data-video="{% static 'F.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'G1.png' %}" alt="G" data-video="{% static 'G.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'H1.png' %}" alt="H" data-video="{% static 'H.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'I1.png' %}" alt="I" data-video="{% static 'I.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'J1.png' %}" alt="J" data-video="{% static 'J.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'K1.png' %}" alt="K"data-video="{% static 'K.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'L1.png' %}" alt="L" data-video="{% static 'L.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'M1.png' %}" alt="M" data-video="{% static 'M.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'N1.png' %}" alt="N" data-video="{% static 'N.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'O1.png' %}" alt="O" data-video="{% static 'O.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'P1.png' %}" alt="P" data-video="{% static 'P.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'Q1.png' %}" alt="Q" data-video="{% static 'Q.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'R1.png' %}" alt="R" data-video="{% static 'R.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'S1.png' %}" alt="S" data-video="{% static 'S.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'T1.png' %}" alt="T" data-video="{% static 'T.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'U1.png' %}" alt="U" data-video="{% static 'U.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'V1.png' %}" alt="V" data-video="{% static 'V.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'W1.png' %}" alt="W" data-video="{% static 'W.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'X1.png' %}" alt="X" data-video="{% static 'X.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'Y1.png' %}" alt="Y" data-video="{% static 'Y.mp4' %}">
+  </div>
+    <div class="image-wrapper">
+   <img src="{% static 'Z1.png' %}" alt="Z" data-video="{% static 'Z.mp4' %}">
+  </div>
+    
+</div>
+
+<div class="popup-container">
+  <div class="popup-wrapper">
+    <h2 class="popup-title"></h2>
+    <video controls></video>
+    <button class="popup-close-btn">X</button>
+  </div>
+</div>
+
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', () => {
+  const popupContainer = document.querySelector('.popup-container');
+  popupContainer.style.display = 'none';
+});
+
+const images = document.querySelectorAll('.image-wrapper');
+const popupContainer = document.querySelector('.popup-container');
+const popupTitle = document.querySelector('.popup-title');
+const popupVideo = document.querySelector('.popup-wrapper video');
+const popupCloseBtn = document.querySelector('.popup-close-btn');
+
+images.forEach((image) => {
+  image.addEventListener('click', () => {
+    const videoSrc = image.querySelector('img').dataset.video;
+    const videoName = image.querySelector('img').alt;
+    popupTitle.textContent = videoName;
+    popupVideo.src = videoSrc;
+    popupContainer.style.display = 'flex';
+  });
+});
+
+popupCloseBtn.addEventListener('click', () => {
+  popupVideo.pause();
+  popupContainer.style.display = 'none';
+});
+
+popupContainer.addEventListener('click', (event) => {
+  if (event.target === popupContainer) {
+    popupVideo.pause();
+    popupContainer.style.display = 'none';
+  }
+});
+
+</script>
+{% endblock %}

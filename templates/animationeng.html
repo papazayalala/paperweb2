@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="center">
+    <h2 align="center" style="margin-top: 50px;">American Sign Language fingerspelling</h2>
+
+    <video id="videoPlayer2" class="center" preload="auto" autoplay>
+        <source src="" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="submit" style="text-align:center" > 
+        <button type="submit" onclick="playPause()" ><img src="{% static 'play.png' %}" ></button>
+    </div>
+</div>
+
+<script>
+    function play(startFrom) {
+        var videoSource = new Array();
+        var videos = document.getElementById("list").getElementsByTagName("li");
+        var j;
+        for (j = 0; j < videos.length; j++) {
+            videoSource[j] = "/static/" + videos[j].innerHTML + ".mp4";
+        }
+
+        var i = startFrom || 0; 
+        var videoCount = videoSource.length;
+
+        function videoPlay(videoNum) {
+            document.getElementById("list").getElementsByTagName("li")[videoNum].style.color = "#09edc7";
+            document.getElementById("list").getElementsByTagName("li")[videoNum].style.fontSize = "xx-large";
+            document.getElementById("videoPlayer2").setAttribute("src", videoSource[videoNum]);
+            document.getElementById("videoPlayer2").load();
+            document.getElementById("videoPlayer2").play();
+        }
+
+        document.getElementById('videoPlayer2').addEventListener('ended', myHandler, false);
+        document.getElementById("list").getElementsByTagName("li")[i].style.color = "#09edc7";
+        document.getElementById("list").getElementsByTagName("li")[i].style.fontSize = "xx-large";
+        videoPlay(i); 
+
+        function myHandler() {
+            document.getElementById("list").getElementsByTagName("li")[i].style.color = "#000000";
+            document.getElementById("list").getElementsByTagName("li")[i].style.fontSize = "20px";
+            i++;
+            if (i == videoCount) {
+                i = 0; 
+                document.getElementById("videoPlayer2").currentTime = 0; 
+                videoPlay(i);
+            } else {
+                videoPlay(i);
+            }
+        }
+    }
+
+    var currentWordIndex = 0; 
+    function playPause() {
+        if (document.getElementById("videoPlayer2").paused) {
+            play(currentWordIndex);
+        } else {
+            currentWordIndex = document.getElementById("list").querySelectorAll("li[style='color: rgb(9, 237, 199); font-size: xx-large;']")[0].id;
+            document.getElementById("videoPlayer2").pause();
+        }
+    }
+</script>
+
+<div class="center">
+    <h2 align="center">Enter word</h2>
+    <tr>
+        <td class="td">
+            <ul class="td" id="list" align="center">
+                {% for word in words %}
+                    <li id="{{ forloop.counter0 }}">{{ word }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    <br>
+    <form action="" method="post" align="center">
+        {% csrf_token %}
+        <input type="text" name="sen" class="mytext" placeholder="" autocomplete="off">
+		<input type="submit" name="submit" class="submit" value="Sent" >
+	</form>
+	<br>
+</div>
+{% endblock %}

@@ -1,0 +1,378 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThaiSL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 18px;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.navbar{
+  width: 100%;
+  margin: auto;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #282828;
+}
+.navbar ul li{
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+  position: relative;
+}
+
+.navbar ul li a{
+  text-decoration: none;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+.navbar ul li::after{
+  content: '';
+  height: 3px;
+  width: 0%;
+  background: #009688;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  transition: 0.5s;
+}
+.navbar ul li:hover:after{
+  width: 100%;
+}
+.navbar {
+  width: 100%;
+  margin: auto;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url('{% static "pas.jpg"%}') ;
+  position: relative; 
+}
+
+.navbar ul li {
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+  position: relative;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.navbar ul li::after {
+  content: '';
+  height: 3px;
+  width: 0%;
+  background: #009688;
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  transition: 0.5s;
+}
+
+.navbar ul li:hover:after {
+  width: 100%;
+}
+
+.hamburger {
+  display: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 770px) {
+    .navbar {
+    z-index: 999;
+  }
+  .navbar ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #282828;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .navbar ul.show {
+    display: block;
+  }
+
+  .navbar ul.show li {
+    display: block; 
+    margin: 10px 0;
+  }
+
+  .navbar ul.show li a {
+    color: #ffffff;
+  }
+
+  .hamburger {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+
+
+
+body
+{ 
+  background-color: rgb(209, 190, 255);
+}
+#bg{
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+  .content {
+    position: relative;
+    text-align: center;
+    color: #000000;
+    padding-top: 50px;
+  }
+
+  .content h1 {
+    font-size: 30px;
+    margin-top: 20px;
+  }
+
+  .content p {
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 30px;
+  }
+
+  ul li {
+    display: inline;
+    margin: 0 2px;
+  }
+  #videoPlayer1{
+    width: 600px;
+    height: 335px;
+    border: none;
+    background-color: rgb(209, 190, 255);
+    background-size: cover;
+    background-position: center;
+    border-radius: 22px;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    box-shadow: 0 0px 0px 0 rgba(0,0,0,0.16), 0 14px 19px 0 rgba(0,0,0,0.07);
+}
+
+#videoPlayer{
+    width: 450px;
+    height: 335px;
+    border: none;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    border-radius: 22px;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    box-shadow: 0 0px 0px 0 rgba(0,0,0,0.16), 0 14px 19px 0 rgba(0,0,0,0.07);
+}
+#videoPlayer2{
+    width: 600px;
+    height: 335px;
+    border: none;
+    background-image: url('{% static "forvideo2.jpg"%}');
+    background-size: cover;
+    background-position: center;
+    border-radius: 22px;
+    overflow: hidden;
+    -webkit-transform: translateZ(0);
+    box-shadow: 0 0px 0px 0 rgba(0,0,0,0.16), 0 14px 19px 0 rgba(0,0,0,0.07);
+}
+
+@media only screen and (max-width: 768px) {
+  #videoPlayer1, #videoPlayer, #videoPlayer2 {
+    width: 96%;
+    height: auto;
+  }
+}
+
+
+
+
+.submit button img{
+    width: 20px;  
+    text-align: center;
+}
+
+.submit button {
+  height: 30px;
+  width: 30px;
+  background-color: #ffffff;
+  border-radius: 50px;  
+  text-align: center;
+  margin: 10px;
+  line-height: 10px;
+  box-shadow: 1px 4px 2px 2px #dcdde1;
+  cursor: pointer;
+  background-color: #009688;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+ p.ex {
+  color: rgb(107, 107, 107);
+  text-size-adjust: 100% ;
+  right: 0% ;
+  top: 0% ;
+
+}
+
+.submit button:hover {
+  box-shadow: 1px 4px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.navbar img:hover {
+  transform: rotate(10deg);
+  transition: all 0.3s ease;
+} 
+
+a i {
+  transition: all 0.3s linear;
+}
+
+a:hover i{
+  transform: scale(1.4);
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 50px auto;
+  max-width: 800px;
+    }
+
+.image-container img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.image-container img:hover {
+  transform: scale(1.1);
+}
+
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.popup-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.popup-wrapper video {
+  width: 100%;
+  height: 100%;
+  max-width: 90%;
+  max-height: 80vh;
+  margin-bottom: 1rem;
+}
+
+
+.popup-close-btn {
+  position: absolute;
+  top: -15px;
+  right: 22px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.popup-close-btn:hover {
+  background-color: red;
+}
+
+.popup-title {
+  font-size: 24px;
+  font-weight: bold;
+  max-width: 90%;
+  margin: 0 auto;
+  background-color: white;
+}
+
+</style>
+</head>
+<body>
+    <div class="navbar">
+         <img src="{% static 'DEA.png' %}" width="170px" style="margin-right: 20px;"/>
+      <ul>
+          <li><a href="{% url 'home' %}">หน้าหลัก</a></li>
+          <li><a href="{% url 'animation' %}">แปลข้อความ</a></li>
+      </ul>
+      <img src="{% static 'Hamburger.png' %}" alt="Menu" class="hamburger">
+
+    </div>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.navbar ul');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+});
+
+</script>
+
+<div class="wrapper" >
+  {% block content %}
+  {% endblock %}
+</div>
+
+
+</body>
+</html>
